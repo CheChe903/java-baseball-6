@@ -18,7 +18,6 @@ public class Game {
     public void start() {
 
         boolean isStartGame = true;
-
         while(isStartGame) {
 
             computerNums = getComputerNums();
@@ -44,7 +43,17 @@ public class Game {
      */
     public boolean checkStart() {
 
-        return true;
+        int input = Integer.parseInt(Console.readLine());
+
+
+
+        if(input == 1) {
+            return true;
+        }
+        else if(input ==2) {
+            return false;
+        }
+
     }
 
     /**
