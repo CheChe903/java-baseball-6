@@ -12,6 +12,7 @@ import static baseball.ballType.*;
 public class Game {
 
     static ArrayList<Integer> computerNums;
+    static int numSize;
 
     /**
      * Game 을 시작하는 start() 메서드
@@ -36,11 +37,54 @@ public class Game {
      */
     public void startRound() {
 
+        System.out.println("숫자 야구 게임을 시작합니다.");
+
         while(true) {
+
+            System.out.println("숫자를 입력해주세요: ");
+            int input = Integer.parseInt(Console.readLine());
+
+            checkException(1, input);
+
+            int strike = 0;
+            int ball = 0;
+            for(int i =0; i<numSize; i++) {
+                int cur = input %10;
+                ballType ballType = getStrikeOrBallOrNothing(cur, i);
+
+                if(ballType == STRIKE) {
+                    strike++;
+                }
+                else if(ballType  == BALL) {
+                    ball++;
+                }
+
+                input /=10;
+            }
+
+            if(strike !=0 && ball != 0) {
+                System.out.println(ball+"볼 " + strike +"스트라이크");
+            }
+            else if(strike != 0) {
+                System.out.println(strike +"스트라이크");
+
+                if(strike == numSize) {
+
+                    System.out.println("3개의 숫자를 모두 맞추셨습니다! 게임 종료");
+                    break;
+                }
+            }
+            else if(ball != 0) {
+                System.out.println(ball+"볼");
+            }
+            else {
+                System.out.println("낫싱");
+            }
 
         }
 
     }
+
 
 
     /**
@@ -52,7 +96,7 @@ public class Game {
     public ballType getStrikeOrBallOrNothing (int input, int index) {
 
 
-        for(int i=0; i<3; i++) {
+        for(int i=0; i<numSize; i++) {
             int cur = computerNums.get(i);
 
             if(input == cur && index == i) {
@@ -94,6 +138,8 @@ public class Game {
                 computerNums.add(num);
             }
         }
+
+        numSize = computerNums.size();
 
         return computerNums;
     }
