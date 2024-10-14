@@ -45,14 +45,10 @@ public class Game {
 
         int input = Integer.parseInt(Console.readLine());
 
+        checkException(input);
 
+        return input == 1;
 
-        if(input == 1) {
-            return true;
-        }
-        else if(input ==2) {
-            return false;
-        }
 
     }
 
@@ -81,7 +77,7 @@ public class Game {
      * 1. 게임 시작 및 종료 선택 시, 1 또는 2의 입력이 아닐 때
      * 2. 게임 라운드 진행 시, 3개의 숫자가 아닌, 2개 이하, 4개 이상의 숫자가 입력될 때
      */
-    public void checkException() {
+    public void checkException(int input) {
 
     }
 
