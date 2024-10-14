@@ -11,14 +11,16 @@ import static baseball.ballType.*;
 
 public class Game {
 
-    static ArrayList<Integer> computerNums;
-    static int numSize;
+    ArrayList<Integer> computerNums;
+    int numSize;
 
     /**
      * Game 을 시작하는 start() 메서드
      * Application 에서 인스턴스화 하여 이 메서드를 부름으로써 게임을 시작한다.
      */
     public void start() {
+
+        System.out.println("숫자 야구 게임을 시작합니다.");
 
         boolean isStartGame = true;
         while(isStartGame) {
@@ -37,8 +39,6 @@ public class Game {
      */
     public void startRound() {
 
-        System.out.println("숫자 야구 게임을 시작합니다.");
-
         while(true) {
 
             System.out.println("숫자를 입력해주세요: ");
@@ -48,7 +48,7 @@ public class Game {
 
             int strike = 0;
             int ball = 0;
-            for(int i =0; i<numSize; i++) {
+            for(int i =numSize-1; i>=0; i--) {
                 int cur = input %10;
                 ballType ballType = getStrikeOrBallOrNothing(cur, i);
 
@@ -117,6 +117,7 @@ public class Game {
      */
     public boolean checkStart() {
 
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
         int input = Integer.parseInt(Console.readLine());
 
         checkException(2, input);
