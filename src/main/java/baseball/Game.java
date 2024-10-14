@@ -6,10 +6,12 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 
+import static baseball.ballType.*;
+
+
 public class Game {
 
     static ArrayList<Integer> computerNums;
-
 
     /**
      * Game 을 시작하는 start() 메서드
@@ -34,8 +36,36 @@ public class Game {
      */
     public void startRound() {
 
+        while(true) {
+
+        }
+
     }
 
+
+    /**
+     *
+     * @param input 사용자 입력 숫자 1개
+     * @param index 시용자 입력 숫자의 Index
+     * @return EnumType ballType 반환
+     */
+    public ballType getStrikeOrBallOrNothing (int input, int index) {
+
+
+        for(int i=0; i<3; i++) {
+            int cur = computerNums.get(i);
+
+            if(input == cur && index == i) {
+                return STRIKE;
+            }
+            else if(input == cur) {
+                return BALL;
+            }
+        }
+
+        return NOTHING;
+
+    }
 
     /**
      * 게임이 끝난 후, 재시작을 묻는 checkStart() 메서드
@@ -48,15 +78,12 @@ public class Game {
         checkException(2, input);
 
         return input == 1;
-
-
     }
 
     /**
      * 랜덤 수 3개를 갖는 리스트를 만드는 getComputerNums() 메서드
      * @return 3개의 랜덤 수를 갖는 ArrayList 반환
      */
-
     public ArrayList<Integer> getComputerNums() {
 
         ArrayList<Integer> computerNums = new ArrayList<>();
