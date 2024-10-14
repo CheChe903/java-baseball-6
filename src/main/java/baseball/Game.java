@@ -45,7 +45,7 @@ public class Game {
 
         int input = Integer.parseInt(Console.readLine());
 
-        checkException(input);
+        checkException(2, input);
 
         return input == 1;
 
@@ -76,8 +76,22 @@ public class Game {
      * 사용자 입력 예외를 잡는 checkException() 메서드
      * 1. 게임 시작 및 종료 선택 시, 1 또는 2의 입력이 아닐 때
      * 2. 게임 라운드 진행 시, 3개의 숫자가 아닌, 2개 이하, 4개 이상의 숫자가 입력될 때
+     * @param eventType 상황에 따른 eventType
+     * @param input 사용자 입력 input
      */
-    public void checkException(int input) {
+    public void checkException(int eventType, int input) {
+
+        switch (eventType) {
+            case 1:
+                if(input > 999 || input < 100)
+                    throw new IllegalArgumentException();
+                break;
+
+            case 2:
+                if(input !=1 && input !=2)
+                    throw new IllegalArgumentException();
+                break;
+        }
 
     }
 
